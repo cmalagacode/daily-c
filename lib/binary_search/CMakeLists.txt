@@ -1,0 +1,3 @@
+add_library(binary_search STATIC binary_search.c)
+target_include_directories(binary_search PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(daily_c PRIVATE binary_search)

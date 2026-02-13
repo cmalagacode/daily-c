@@ -1,0 +1,5 @@
+add_subdirectory(stack)
+add_subdirectory(singly_linked_list)
+add_subdirectory(quicksort)
+add_subdirectory(binary_search)
+add_subdirectory(comparison)
