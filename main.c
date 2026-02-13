@@ -1,6 +1,48 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
+
+struct Stack {
+    int top;
+    int bottom;
+    int capacity;
+    int* data;
+    int size;
+};
+
+struct Stack* stack_create(const int capacity) {
+    struct Stack* stack = calloc(1, sizeof(struct Stack));
+    stack->capacity = capacity;
+    stack->data = calloc(capacity, sizeof(int));
+    stack->size = 0;
+    stack->top = -1;
+    stack->bottom = 0;
+    return stack;
+}
+
+void stack_push(struct Stack* stack, int val) {
+    if (stack->size == stack->capacity) {
+        return;
+    }
+    stack->data[++stack->top] = val;
+    stack->bottom++;
+    stack->size++;
+}
+
+int stack_pop(struct Stack* stack) {
+    if (stack->size == 0) return 0;
+    int val = stack->data[stack->top--];
+    stack->size--;
+    return val;
+}
+
+bool stack_is_empty(struct Stack* stack) {
+    return stack->size == 0;
+}
+
+int stack_peek(struct Stack* stack) {
+    if (stack_is_empty(stack)) return 0;
+    return stack->data[stack->top];
+}
 
 int partition(int arr[], int l, int h) {
     int x = arr[h];
@@ -60,9 +102,24 @@ int binary_search(int* arr, int size, int target) {
     return -1;
 }
 
+bool is_greater(int a, int b) {
+    return a > b;
+}
+
 int main(void) {
     int b[] = {4, 3, 2, 1};
     quick_sort_iterative(b, 0, (int)(sizeof(b) / sizeof(b[0])) - 1);
     for (int i = 0; i < 4; i++) printf("%d ", b[i]);
+    bool result = is_greater(1, 2);
+    printf("%d", result);
+    printf("\n======================\n");
+    struct Stack* stack = stack_create(10);
+    stack_push(stack, 1);
+    printf("%d\n", stack_peek(stack));
+    stack_pop(stack);
+    printf("%d", stack_peek(stack));
+    free(stack->data);
+    free(stack);
+    printf("\n======================\n");
     return 0;
 }
