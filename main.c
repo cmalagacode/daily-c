@@ -23,5 +23,6 @@ int main(void) {
     free(stack->data);
     free(stack);
     printf("\n======================\n");
+    printf("\n======================\n");
     return 0;
 }
