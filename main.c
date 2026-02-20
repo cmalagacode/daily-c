@@ -5,6 +5,7 @@
 #include "slink.h"
 #include "stack.h"
 #include "compare.h"
+#include "random_stuff.h"
 
 
 int main(void) {
@@ -24,5 +25,6 @@ int main(void) {
     free(stack);
     printf("\n======================\n");
     printf("\n======================\n");
+    say_hello();
     return 0;
 }
